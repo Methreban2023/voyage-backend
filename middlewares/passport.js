@@ -6,10 +6,10 @@ const config = require("../config/keys");
 const User = require("../models/User");
 
 exports.localStrategy = new LocalStrategy(
-  { usernameField: "email" },
-  async (email, password, done) => {
+  { usernameField: "username" },
+  async (username, password, done) => {
     try {
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ username: username });
       if (!user) {
         return done(null, false);
       }
