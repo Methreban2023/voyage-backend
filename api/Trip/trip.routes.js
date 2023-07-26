@@ -10,7 +10,7 @@ const {
 } = require("./trip.controller");
 const router = express.Router();
 const passport = require("passport");
-const upload = require("../../middlewares/uploader");
+const uploader = require("../../middlewares/uploader");
 router.param("tripyId", async (req, res, next, tripId) => {
   try {
     const foundtrip = await fetchTrip(tripId);
@@ -24,11 +24,16 @@ router.param("tripyId", async (req, res, next, tripId) => {
 
 router.get("/", getAllTrips);
 router.get("/:tripId", getTripById);
-router.post("/", passport.authenticate("jwt", { session: false }), createTrip);
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  uploader.single("image"),
+  createTrip
+);
 
 router.put("/", passport.authenticate("jwt", { session: false }), updateTrip);
 router.delete(
-  "/",
+  "/:tripId",
   passport.authenticate("jwt", { session: false }),
   deleteTrip
 );
