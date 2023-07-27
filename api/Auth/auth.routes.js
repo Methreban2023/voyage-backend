@@ -17,7 +17,7 @@ const localAuthenticate = passport.authenticate("local", { session: false });
 
 router.param("userId", param);
 
-router.get("/me", jwtAuthenticate, getUser);
+// router.get("/me", jwtAuthenticate, getUser);
 
 router.post("/signup", uploader.single("image"), signup);
 
