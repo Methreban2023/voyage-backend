@@ -36,6 +36,7 @@ app.use("/api/country", countryRoutes);
 app.use("/api/city", cityRoutes);
 app.use("/api/trip", tripRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/users", authRoutes);
 //errorhandlers:
 app.use(notFound);
 app.use(errorHandler);
