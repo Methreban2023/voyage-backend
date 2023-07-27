@@ -21,7 +21,7 @@ exports.signup = async (req, res, next) => {
 
     //create user with encrypted password
     if (req.file) {
-      req.body.userImage = `${req.file.path}`;
+      req.body.image = req.file.path.replace("\\", "/");
     }
 
     const newUser = await User.create(req.body);
