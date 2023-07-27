@@ -4,7 +4,8 @@ const config = require("./config/keys");
 const authRoutes = require("./api/Auth/auth.routes");
 const countryRoutes = require("./api/Country/country.routes");
 const cityRoutes = require("./api/City/city.routes");
-const tripRoutes =require("./api/Trip/trip.routes");
+const tripRoutes = require("./api/Trip/trip.routes");
+const profileRoutes = require("./api/Profile/profile.routes");
 const notFound = require("./middlewares/notFoundHandler");
 const { localStrategy, jwtStrategy } = require("./middlewares/passport");
 const errorHandler = require("./middlewares/errorHandler");
@@ -33,8 +34,8 @@ app.use("/media", express.static(path.join(__dirname, "media")));
 app.use("/api/users/auth", authRoutes);
 app.use("/api/country", countryRoutes);
 app.use("/api/city", cityRoutes);
-app.use("/api/trip",tripRoutes )
-
+app.use("/api/trip", tripRoutes);
+app.use("/api/profile", profileRoutes);
 //errorhandlers:
 app.use(notFound);
 app.use(errorHandler);
