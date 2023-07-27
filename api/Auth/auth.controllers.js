@@ -4,8 +4,10 @@ const generateToken = require("../../utils/auth/generateToken");
 
 exports.getUser = async (req, res, next) => {
   try {
-    const users = await User.find().select(" username userImage");
-    return res.status(200).json(users);
+    const me = await User.findById(req.user.id)
+      .populate("trips")
+      .select("-password ");
+    return res.status(200).json(me);
   } catch (err) {
     return next(err);
   }
@@ -36,6 +38,7 @@ exports.signin = async (req, res, next) => {
   try {
     console.log(req.user);
     const token = generateToken(req.user);
+
     return res.status(200).json({ token });
   } catch (err) {
     return next(err);

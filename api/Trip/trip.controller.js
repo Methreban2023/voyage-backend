@@ -36,6 +36,11 @@ exports.createTrip = async (req, res, next) => {
     }
 
     const newTrip = await Trip.create(req.body);
+
+    await req.user.updateOne({
+      $push: { trips: newTrip._id },
+    });
+
     return res.status(201).json(newTrip);
   } catch (err) {
     // return res.status(500).json(err.message);
