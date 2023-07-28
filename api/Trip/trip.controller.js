@@ -34,7 +34,7 @@ exports.createTrip = async (req, res, next) => {
     if (req.file) {
       req.body.image = req.file.path.replace("\\", "/");
     }
-
+    req.body.createdBy = req.user._id;
     const newTrip = await Trip.create(req.body);
 
     await req.user.updateOne({
