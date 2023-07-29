@@ -2,16 +2,15 @@ const User = require("../../models/User");
 const passHash = require("../../utils/auth/passHash");
 const generateToken = require("../../utils/auth/generateToken");
 
-// exports.getUser = async (req, res, next) => {
-//   try {
-//     const me = await User.findById(req.user.id)
-//       .populate("trips")
-//       .select("-password ");
-//     return res.status(200).json(me);
-//   } catch (err) {
-//     return next(err);
-//   }
-// };
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+
+    return res.status(200).json(users);
+  } catch (err) {
+    return next(err);
+  }
+};
 
 exports.signup = async (req, res, next) => {
   try {
