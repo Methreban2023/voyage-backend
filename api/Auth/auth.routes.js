@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  getUser,
+  getAllUsers,
   signin,
   signup,
   deleteUser,
@@ -17,7 +17,7 @@ const localAuthenticate = passport.authenticate("local", { session: false });
 
 router.param("userId", param);
 
-// router.get("/me", jwtAuthenticate, getUser);
+router.get("/getusers", getAllUsers);
 
 router.post("/signup", uploader.single("image"), signup);
 

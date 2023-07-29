@@ -50,9 +50,12 @@ exports.createTrip = async (req, res, next) => {
 
 exports.updateTrip = async (req, res, next) => {
   try {
-    const { tripId } = req.params;
-    await Trip.findByIdAndUpdate(tripId, req.body);
-    // await Trip.findByIdAndUpdate(req.trip.id, req.body);
+    if (req.file) {
+      req.body.image = req.file.path.replace("\\", "/");
+    }
+    // const { tripId } = req.params;
+    // await Trip.findByIdAndUpdate(tripId, req.body);
+    await Trip.findByIdAndUpdate(req.trip.id, req.body);
     return res.status(204).end();
   } catch (error) {
     return next(error);
