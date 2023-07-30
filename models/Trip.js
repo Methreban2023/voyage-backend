@@ -12,7 +12,7 @@ const tripSchema = new Schema(
 
     createdBy: { type: Schema.Types.ObjectId, ref: "User" },
     // relations
-    cities: [{ type: Schema.Types.ObjectId, ref: "City" }],
+    country: String,
   },
   { timestamps: true }
 );
